@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+import py_compile
+import os
+
+if 'PYFILE' not in os.environ:
+    print("Error: Environment variable $PYFILE is not set.")
+    exit(1)
+pyfile = os.environ['PYFILE']
+
+if not os.path.exists(pyfile):
+    print(f"Error: Python file '{pyfile}' does not exist.")
+    exit(1)
+compiled_file = pyfile + "c"
+py_compile.compile(pyfile, compiled_file)
+
+print(f"Compiled '{pyfile}' to '{compiled_file}'.")
